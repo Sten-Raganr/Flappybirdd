@@ -15,6 +15,7 @@ namespace Flappybirdd
         int gravity = 10;
         int pipespeed = 6;
         int score = 0;
+        int snowgrav = 10;
         public Form1()
         {
             InitializeComponent();
@@ -25,6 +26,8 @@ namespace Flappybirdd
             bird.Top += gravity;
             pipetop.Left -= pipespeed;
             pipebot.Left -= pipespeed;
+            snowflake.Top += snowgrav;
+            snowflake1.Top += snowgrav;
             scoreLabel.Text = $"Score: {score}";
 
             if (pipetop.Left < -150)
@@ -37,6 +40,15 @@ namespace Flappybirdd
                 pipebot.Left = 525;
                 score++;
             }
+            if(snowflake.Top > 800)
+            {
+                snowflake.Top = 100; 
+            }
+            if (snowflake1.Top > 750)
+            {
+                snowflake.Top = 99;
+                snowgrav= snowgrav - 1;
+            }
             if (bird.Top < -25)
             {
                 Gameover();
@@ -45,6 +57,7 @@ namespace Flappybirdd
             {
                 Gameover();
             }
+
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -79,6 +92,16 @@ namespace Flappybirdd
             Form1 newform = new Form1();
             newform.Show();
             this.Dispose(false);
+        }
+
+        private void pipetop_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ground_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
